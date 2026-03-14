@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jerry Patrick Dickerson — CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #0d0f0e;
+      --bg2:         #141714;
+      --bg3:         #1c201b;
+      --line:        #2a2e29;
+      --text:        #e8ede6;
+      --muted:       #6b7468;
+      --soft:        #9ba897;
+      --green:       #7ec88a;
+      --green-d:     #3a6b42;
+      --green-glow:  rgba(126,200,138,0.12);
+      --amber:       #d4a84b;
+      --amber-d:     #6b5220;
+      --white:       #f5f7f4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lora', serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
+      pointer-events: none; z-index: 999;
+    }
+
+    .glow-cursor {
+      position: fixed; width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(126,200,138,0.07) 0%, transparent 70%);
+      pointer-events: none; transform: translate(-50%, -50%); z-index: 998;
+    }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13,15,14,0.88); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      max-width: 1080px; margin: 0 auto; padding: 0 2rem;
+      height: 56px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--green); letter-spacing: 0.05em; }
+    .nav-logo span { color: var(--muted); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--green); }
+
+    /* HERO */
+    #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 56px; position: relative; overflow: hidden; }
+    .hero-bg-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 60px 60px; opacity: 0.4;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    }
+    .hero-content { position: relative; z-index: 2; padding: 5rem 0; }
+    .hero-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+    .hero-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--green); }
+    .hero-name { font-family: 'Syne', sans-serif; font-size: clamp(3rem, 8vw, 7rem); font-weight: 800; line-height: 0.92; letter-spacing: -0.04em; color: var(--white); margin-bottom: 1.5rem; }
+    .hero-name .accent { color: var(--green); }
+    .hero-sub { font-family: 'Lora', serif; font-style: italic; font-size: 1.2rem; color: var(--soft); max-width: 520px; margin-bottom: 3rem; }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 1.75rem; text-decoration: none; transition: all 0.2s; }
+    .btn-primary { background: var(--green); color: var(--bg); border: 1px solid var(--green); }
+    .btn-primary:hover { background: transparent; color: var(--green); }
+    .btn-ghost { background: transparent; color: var(--soft); border: 1px solid var(--line); }
+    .btn-ghost:hover { border-color: var(--soft); color: var(--white); }
+
+    /* SECTIONS */
+    section { padding: 6rem 0; border-top: 1px solid var(--line); }
+    .section-header { display: flex; align-items: baseline; gap: 1.25rem; margin-bottom: 3.5rem; }
+    .section-num { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--green); letter-spacing: 0.1em; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--white); letter-spacing: -0.03em; }
+    .section-line { flex: 1; height: 1px; background: var(--line); }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .about-text p { font-size: 1rem; color: var(--soft); line-height: 1.85; margin-bottom: 1.4rem; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--text); font-weight: 500; }
+    .about-text em { color: var(--green); font-style: italic; }
+    .about-sidebar { display: flex; flex-direction: column; gap: 1.5rem; position: sticky; top: 80px; }
+    .info-card { background: var(--bg2); border: 1px solid var(--line); padding: 1.25rem 1.5rem; }
+    .info-card-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+    .info-card-value { font-size: 0.95rem; color: var(--text); }
+    .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .stat-cell { background: var(--bg2); padding: 1.25rem; text-align: center; }
+    .stat-num { font-family: 'Syne', sans-serif; font-size: 1.9rem; font-weight: 800; color: var(--green); display: block; line-height: 1; margin-bottom: 0.3rem; }
+    .stat-lbl { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-entry { display: grid; grid-template-columns: 160px 1fr; gap: 2.5rem; padding: 2.5rem 0; border-bottom: 1px solid var(--line); transition: all 0.2s; }
+    .exp-entry:last-child { border-bottom: none; }
+    .exp-entry:hover { background: var(--green-glow); margin: 0 -1rem; padding-left: 1rem; padding-right: 1rem; }
+    .exp-left { padding-top: 0.15rem; }
+    .exp-period { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+    .exp-tag { display: inline-block; background: var(--green-d); color: var(--green); font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; }
+    .exp-title { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 0.3rem; }
+    .exp-org { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--amber); letter-spacing: 0.08em; margin-bottom: 0.8rem; }
+    .exp-desc { font-size: 0.9rem; color: var(--soft); line-height: 1.75; }
+
+    /* EDUCATION */
+    .edu-list { display: flex; flex-direction: column; }
+    .edu-entry { display: grid; grid-template-columns: 160px 1fr; gap: 2.5rem; padding: 2.5rem 0; border-bottom: 1px solid var(--line); }
+    .edu-entry:last-child { border-bottom: none; }
+    .edu-left { padding-top: 0.15rem; }
+    .edu-period { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+    .edu-badge { display: inline-block; background: var(--amber-d); color: var(--amber); font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; }
+    .edu-degree { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 0.2rem; }
+    .edu-institution { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--amber); letter-spacing: 0.08em; margin-bottom: 0.8rem; }
+    .edu-desc { font-size: 0.9rem; color: var(--soft); line-height: 1.75; margin-bottom: 0.75rem; }
+    .edu-modules { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .edu-module { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; background: var(--bg3); border: 1px solid var(--line); color: var(--soft); padding: 0.2rem 0.6rem; }
+
+    /* SKILLS */
+    .skills-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .skill-category-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 1.25rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--line); }
+    .competency-list { display: flex; flex-direction: column; gap: 1rem; }
+    .comp-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem; }
+    .comp-name { font-size: 0.88rem; color: var(--text); font-weight: 500; }
+    .comp-level { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .comp-bar { height: 3px; background: var(--bg3); border: 1px solid var(--line); overflow: hidden; }
+    .comp-fill { height: 100%; background: var(--green); width: 0; transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+    .comp-fill.animated { width: var(--w); }
+    .skills-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .skill-group { background: var(--bg2); padding: 1.75rem; }
+    .skill-group-title { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 1.1rem; border-bottom: 1px solid var(--line); padding-bottom: 0.75rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skill-tag { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; background: var(--bg3); border: 1px solid var(--line); color: var(--soft); padding: 0.25rem 0.65rem; transition: all 0.15s; cursor: default; }
+    .skill-tag:hover { border-color: var(--green); color: var(--green); background: var(--green-glow); }
+
+    /* CONTACT */
+    .contact-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: 3rem; }
+    .cd-cell { background: var(--bg2); padding: 1.25rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem; }
+    .cd-icon { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); min-width: 60px; padding-top: 0.15rem; }
+    .cd-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+    .cd-value { font-size: 0.9rem; color: var(--text); }
+    .cd-value a { color: var(--green); text-decoration: none; transition: color 0.2s; }
+    .cd-value a:hover { color: var(--white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .contact-items { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-row { display: flex; align-items: center; gap: 1.25rem; padding: 1rem 1.25rem; background: var(--bg3); border: 1px solid var(--line); text-decoration: none; transition: all 0.2s; }
+    .contact-row:hover { border-color: var(--green); background: var(--green-glow); }
+    .contact-row-icon { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--green); letter-spacing: 0.1em; min-width: 64px; }
+    .contact-row-text { font-size: 0.9rem; color: var(--text); }
+    .contact-row-arr { margin-left: auto; color: var(--muted); font-size: 0.8rem; transition: color 0.2s; }
+    .contact-row:hover .contact-row-arr { color: var(--green); }
+
+    /* FOOTER */
+    footer { padding: 2rem 0; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+    .footer-left { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; }
+    .footer-right { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--muted); }
+    .footer-right span { color: var(--green); }
+
+    /* ANIMATIONS */
+    @keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+      .about-grid, .skills-two-col, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-sidebar { position: static; }
+      .exp-entry, .edu-entry { grid-template-columns: 1fr; gap: 0.6rem; }
+      .contact-details-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-cursor" id="glow"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">jpd<span>.cv</span></div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-tag">Consultant &amp; VP · United States</div>
+        <h1 class="hero-name">
+          Jerry<br>Patrick<br><span class="accent">Dickerson.</span>
+        </h1>
+        <p class="hero-sub">
+          Strategy, finance, and design thinking — in service of businesses and the societies they shape.
+        </p>
+        <div class="hero-cta">
+          <a href="#about" class="btn btn-primary">About me</a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-num">01</span>
+        <h2 class="section-title">About Me</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>My name is <strong>Jerry Patrick Dickerson</strong> — personally I go by Patrick, but professionally I'm commonly referred to as Jerry. Born in Atlanta and raised in Stone Mountain, Georgia, I am 31 years old, with a birthday on <em>May 18th</em>. Growing up, baseball was my sport and my teacher; it shaped my discipline, my love of teamwork, and the person I've become. Spring is my favourite season — it stands for new beginnings, growth, and life. And one day, I plan to live near the beach, where I find the peace and clarity to do my best thinking.</p>
+          <p>I bring roughly <strong>7 years of experience in finance</strong> across automotive, healthcare, investment banking, and private equity, along with a year spent as a programme instructor in education. My newest pursuit is <em>software engineering</em> — and I find the combination genuinely exciting. Finance tells you how to make decisions; engineering teaches you how to build things. I'm drawn to the space where those two disciplines meet, and my goal is to use that intersection to create meaningful projects that benefit my employer, myself, or the broader world.</p>
+          <p>At the highest level, my aspirations are straightforward: <em>wealth, peace, and contribution</em>. I care deeply about diplomacy, politics, and international affairs — the forces that shape life at a global scale. I aspire to pursue dual citizenship, travel widely, and immerse myself in different cultures and perspectives. Ultimately, I want to be involved in organisations and initiatives that make the world a meaningfully better place.</p>
+        </div>
+        <div class="about-sidebar reveal">
+          <div class="info-card">
+            <div class="info-card-label">Full name</div>
+            <div class="info-card-value">Jerry Patrick Dickerson</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Title</div>
+            <div class="info-card-value">Consultant, VP</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Location</div>
+            <div class="info-card-value">United States</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Specialisms</div>
+            <div class="info-card-value">Strategy · Finance · Private Equity · Design Thinking</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-cell">
+              <span class="stat-num">4</span>
+              <div class="stat-lbl">Industries</div>
+            </div>
+            <div class="stat-cell">
+              <span class="stat-num">VP</span>
+              <div class="stat-lbl">Seniority</div>
+            </div>
+            <div class="stat-cell">
+              <span class="stat-num">MCL</span>
+              <div class="stat-lbl">Honours</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Work Experience</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="exp-list">
+
+        <div class="exp-entry reveal">
+          <div class="exp-left">
+            <div class="exp-period">Current</div>
+            <div class="exp-tag">VP</div>
+          </div>
+          <div>
+            <div class="exp-title">Private Equity Consultant</div>
+            <div class="exp-org">Private Equity · Consultant</div>
+            <p class="exp-desc">Advising private equity clients on investment strategy, portfolio company performance, and value creation initiatives. Applying cross-sector expertise in finance and strategy to identify opportunities, assess risk, and support portfolio management across diverse industries. Operating at VP level, leading client engagements from initial analysis through to delivery.</p>
+          </div>
+        </div>
+
+        <div class="exp-entry reveal">
+          <div class="exp-left">
+            <div class="exp-period">Prior Role</div>
+            <div class="exp-tag">Banking</div>
+          </div>
+          <div>
+            <div class="exp-title">Investment Banking Rotational Program</div>
+            <div class="exp-org">Investment Banking · Rotational Analyst</div>
+            <p class="exp-desc">Completed a structured rotational programme across core investment banking functions. Gained hands-on exposure to M&amp;A advisory, capital markets, and corporate finance. Developed skills in financial modelling, valuation, pitch book preparation, and client-facing analysis under demanding deal timelines.</p>
+          </div>
+        </div>
+
+        <div class="exp-entry reveal">
+          <div class="exp-left">
+            <div class="exp-period">Prior Role</div>
+            <div class="exp-tag">Healthcare</div>
+          </div>
+          <div>
+            <div class="exp-title">FP&amp;A Healthcare Advisor</div>
+            <div class="exp-org">Healthcare Sector · Financial Planning &amp; Analysis</div>
+            <p class="exp-desc">Served as a financial planning and analysis advisor within a healthcare organisation, supporting budgeting, forecasting, and strategic financial decision-making. Translated complex financial data into actionable insights for clinical and operational leadership, contributing to cost efficiency and resource allocation improvements.</p>
+          </div>
+        </div>
+
+        <div class="exp-entry reveal">
+          <div class="exp-left">
+            <div class="exp-period">Early Career</div>
+            <div class="exp-tag">Automotive</div>
+          </div>
+          <div>
+            <div class="exp-title">Automotive Financial Rotational Program</div>
+            <div class="exp-org">Automotive Sector · Rotational Analyst</div>
+            <p class="exp-desc">Participated in a competitive financial rotational programme within the automotive sector, cycling through functions including financial reporting, treasury, and business planning. Built a strong analytical foundation and an understanding of large-scale manufacturing finance, capital allocation, and operational performance metrics.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Education</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="edu-list">
+        <div class="edu-entry reveal">
+          <div class="edu-left">
+            <div class="edu-period">2012 — 2016</div>
+            <div class="edu-badge">Magna Cum Laude</div>
+          </div>
+          <div>
+            <div class="edu-degree">Bachelor of Science — Finance</div>
+            <div class="edu-institution">Morehouse College · Atlanta, GA</div>
+            <p class="edu-desc">Graduated Magna Cum Laude with a degree in Finance from Morehouse College — one of the nation's most distinguished HBCUs and a historic institution renowned for producing principled, high-achieving leaders. Developed a rigorous grounding in financial theory, complemented by the College's strong tradition of ethics, civic responsibility, and global leadership.</p>
+            <div class="edu-modules">
+              <span class="edu-module">Corporate Finance</span>
+              <span class="edu-module">Financial Modelling</span>
+              <span class="edu-module">Investments</span>
+              <span class="edu-module">Economics</span>
+              <span class="edu-module">Business Strategy</span>
+              <span class="edu-module">Magna Cum Laude Honours</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Skills &amp; Competencies</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-two-col">
+        <div class="reveal">
+          <div class="skill-category-title">Core competencies</div>
+          <div class="competency-list">
+            <div class="comp-item">
+              <div class="comp-header"><span class="comp-name">Financial Analysis &amp; Modelling</span><span class="comp-level">Expert</span></div>
+              <div class="comp-bar"><div class="comp-fill" style="--w:95%"></div></div>
+            </div>
+            <div class="comp-item">
+              <div class="comp-header"><span class="comp-name">Business Strategy</span><span class="comp-level">Expert</span></div>
+              <div class="comp-bar"><div class="comp-fill" style="--w:93%"></div></div>
+            </div>
+            <div class="comp-item">
+              <div class="comp-header"><span class="comp-name">Private Equity &amp; Investment Banking</span><span class="comp-level">Advanced</span></div>
+              <div class="comp-bar"><div class="comp-fill" style="--w:90%"></div></div>
+            </div>
+            <div class="comp-item">
+              <div class="comp-header"><span class="comp-name">Design Thinking</span><span class="comp-level">Advanced</span></div>
+              <div class="comp-bar"><div class="comp-fill" style="--w:85%"></div></div>
+            </div>
+            <div class="comp-item">
+              <div class="comp-header"><span class="comp-name">FP&amp;A &amp; Budgeting</span><span class="comp-level">Advanced</span></div>
+              <div class="comp-bar"><div class="comp-fill" style="--w:88%"></div></div>
+            </div>
+            <div class="comp-item">
+              <div class="comp-header"><span class="comp-name">Stakeholder Communication</span><span class="comp-level">Advanced</span></div>
+              <div class="comp-bar"><div class="comp-fill" style="--w:91%"></div></div>
+            </div>
+            <div class="comp-item">
+              <div class="comp-header"><span class="comp-name">Diplomacy &amp; Negotiation</span><span class="comp-level">Proficient</span></div>
+              <div class="comp-bar"><div class="comp-fill" style="--w:82%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="skill-category-title">Tools &amp; domain skills</div>
+          <div class="skills-grid">
+            <div class="skill-group">
+              <div class="skill-group-title">Finance &amp; analysis</div>
+              <div class="skill-tags">
+                <span class="skill-tag">Financial Modelling</span>
+                <span class="skill-tag">Valuation</span>
+                <span class="skill-tag">M&amp;A Advisory</span>
+                <span class="skill-tag">FP&amp;A</span>
+                <span class="skill-tag">Portfolio Management</span>
+                <span class="skill-tag">Capital Markets</span>
+                <span class="skill-tag">Excel / Sheets</span>
+                <span class="skill-tag">Forecasting</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-title">Strategy &amp; consulting</div>
+              <div class="skill-tags">
+                <span class="skill-tag">Design Thinking</span>
+                <span class="skill-tag">Business Strategy</span>
+                <span class="skill-tag">Market Analysis</span>
+                <span class="skill-tag">Value Creation</span>
+                <span class="skill-tag">Pitch Decks</span>
+                <span class="skill-tag">Due Diligence</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-title">Interpersonal</div>
+              <div class="skill-tags">
+                <span class="skill-tag">Leadership</span>
+                <span class="skill-tag">Diplomacy</span>
+                <span class="skill-tag">Negotiation</span>
+                <span class="skill-tag">Executive Presentation</span>
+                <span class="skill-tag">Cross-functional Collaboration</span>
+                <span class="skill-tag">Stakeholder Management</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-num">05</span>
+        <h2 class="section-title">Contact</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="contact-details-grid reveal">
+        <div class="cd-cell">
+          <div class="cd-icon">Name</div>
+          <div class="cd-content">
+            <div class="cd-label">Full name</div>
+            <div class="cd-value">Jerry Patrick Dickerson</div>
+          </div>
+        </div>
+        <div class="cd-cell">
+          <div class="cd-icon">Phone</div>
+          <div class="cd-content">
+            <div class="cd-label">Contact number</div>
+            <div class="cd-value">(678) 978-8060</div>
+          </div>
+        </div>
+        <div class="cd-cell">
+          <div class="cd-icon">Personal</div>
+          <div class="cd-content">
+            <div class="cd-label">Personal email</div>
+            <div class="cd-value"><a href="/cdn-cgi/l/email-protection#791c1418101509180d0b101a120d161d1800391e14181015571a1614"><span class="__cf_email__" data-cfemail="f2979f939b9e829386809b9199869d96938bb2959f939b9edc919d9f">[email&#160;protected]</span></a></div>
+          </div>
+        </div>
+        <div class="cd-cell">
+          <div class="cd-icon">Work</div>
+          <div class="cd-content">
+            <div class="cd-label">Professional email</div>
+            <div class="cd-value"><a href="/cdn-cgi/l/email-protection#c0aaa5b2b2b9eeb0eea4a9a3aba5b2b3afae80a7ada1a9aceea3afad"><span class="__cf_email__" data-cfemail="e78d8295959ec997c9838e848c8295948889a7808a868e8bc984888a">[email&#160;protected]</span></a></div>
+          </div>
+        </div>
+        <div class="cd-cell">
+          <div class="cd-icon">Location</div>
+          <div class="cd-content">
+            <div class="cd-label">Based in</div>
+            <div class="cd-value">United States</div>
+          </div>
+        </div>
+        <div class="cd-cell">
+          <div class="cd-icon">LinkedIn</div>
+          <div class="cd-content">
+            <div class="cd-label">LinkedIn profile</div>
+            <div class="cd-value"><a href="https://www.linkedin.com/in/jerrypatrickdickerson/" target="_blank">linkedin.com/in/jerrypatrickdickerson</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-grid reveal">
+        <div class="contact-items">
+          <a href="/cdn-cgi/l/email-protection#abc1ced9d9d285db85cfc2c8c0ced9d8c4c5ebccc6cac2c785c8c4c6" class="contact-row">
+            <span class="contact-row-icon">Work</span>
+            <span class="contact-row-text"><span class="__cf_email__" data-cfemail="660c0314141f481648020f050d031415090826010b070f0a4805090b">[email&#160;protected]</span></span>
+            <span class="contact-row-arr">→</span>
+          </a>
+          <a href="/cdn-cgi/l/email-protection#aacfc7cbc3c6dacbded8c3c9c1dec5cecbd3eacdc7cbc3c684c9c5c7" class="contact-row">
+            <span class="contact-row-icon">Personal</span>
+            <span class="contact-row-text"><span class="__cf_email__" data-cfemail="a3c6cec2cacfd3c2d7d1cac0c8d7ccc7c2dae3c4cec2cacf8dc0ccce">[email&#160;protected]</span></span>
+            <span class="contact-row-arr">→</span>
+          </a>
+          <a href="https://www.linkedin.com/in/jerrypatrickdickerson/" target="_blank" class="contact-row">
+            <span class="contact-row-icon">LinkedIn</span>
+            <span class="contact-row-text">linkedin.com/in/jerrypatrickdickerson</span>
+            <span class="contact-row-arr">→</span>
+          </a>
+          <a href="tel:6789788060" class="contact-row">
+            <span class="contact-row-icon">Phone</span>
+            <span class="contact-row-text">(678) 978-8060</span>
+            <span class="contact-row-arr">→</span>
+          </a>
+        </div>
+        <div style="display:flex;flex-direction:column;justify-content:center;">
+          <p style="font-family:'Lora',serif;font-style:italic;color:var(--soft);font-size:0.95rem;line-height:1.85;">
+            I'm always open to conversations about consulting opportunities, strategic partnerships, and initiatives at the intersection of business and societal impact. Don't hesitate to reach out.
+          </p>
+          <div style="margin-top:1.5rem;">
+            <a href="/cdn-cgi/l/email-protection#92f8f7e0e0ebbce2bcf6fbf1f9f7e0e1fdfcd2f5fff3fbfebcf1fdff" class="btn btn-primary">Send a message →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">Jerry Patrick Dickerson · Consultant, VP</div>
+        <div class="footer-right">United States · <span>2026</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    const glow = document.getElementById('glow');
+    document.addEventListener('mousemove', e => {
+      glow.styl
