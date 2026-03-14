@@ -1,2 +1,0 @@
-# MyCV
-Static Website Bio
